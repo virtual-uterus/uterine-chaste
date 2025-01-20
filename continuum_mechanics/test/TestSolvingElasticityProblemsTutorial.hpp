@@ -49,7 +49,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * In this tutorial we show how Chaste can be used to solve solid mechanics problems.
  * We assume the reader has some familiarity with solid mechanics problems (the
  * equations of nonlinear elasticity are given in the PDF on equations
- * and finite element implementations https://chaste.github.io/docs/fem_implementation.pdf ).
+ * and [finite element implementations](/docs/fem_implementation.pdf) ).
  * It is also best to have had a look at the solving linear PDEs tutorials.
  *
  * In brief, there several facets to solid mechanics models:
