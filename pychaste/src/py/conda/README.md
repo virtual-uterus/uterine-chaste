@@ -58,7 +58,7 @@ Login and upload the package:
 
 ```bash
 anaconda login
-anaconda upload -u 'pychaste' ./build_artifacts/<chaste>-<version>-<hash>.tar.bz2
+anaconda upload -u 'pychaste' ./build_artifacts/linux64/<chaste>-<version>-<hash>.tar.bz2
 ```
 
 ## Directory structure

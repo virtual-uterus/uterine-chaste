@@ -3,6 +3,9 @@
 mkdir -p ${PREFIX}/build
 cd ${PREFIX}/build || exit
 
+mkdir pychaste
+cp -r /tmp/wrappers pychaste/
+
 # Modify pip settings for internal Chaste Python env
 export PIP_NO_DEPENDENCIES="False"
 export PIP_NO_INDEX="False"
@@ -38,6 +41,7 @@ ${PYTHON} -m pip install -v pychaste/package --prefix="${PREFIX}"
 # Cleanup
 rm -rf \
   cell_based/CMakeFiles \
+  chaste_python3_venv \
   global/CMakeFiles \
   io/CMakeFiles \
   linalg/CMakeFiles \
@@ -46,4 +50,5 @@ rm -rf \
   pde/CMakeFiles \
   python \
   pychaste/CMakeFiles \
-  pychaste/package
+  pychaste/package \
+  pychaste/wrappers

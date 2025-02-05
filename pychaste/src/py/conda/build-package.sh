@@ -48,18 +48,21 @@ export PYTHONUNBUFFERED=1
 mkdir -p "${CONDA_BLD_PATH}"
 
 cat >~/.condarc <<CONDARC
+
 conda-build:
   root-dir: ${CONDA_BLD_PATH}
 pkgs_dirs:
   - ${CONDA_BLD_PATH}/pkg_cache
   - /opt/conda/pkgs
+solver: libmamba
+
 CONDARC
 
 # Install conda build tools
 mamba install --update-specs --yes --quiet --channel conda-forge \
-  conda-build pip boa liblief=0.11.5 conda-forge-ci-setup=3
+  conda-build pip boa liblief conda-forge-ci-setup
 mamba update --update-specs --yes --quiet --channel conda-forge \
-  conda-build pip boa liblief=0.11.5 conda-forge-ci-setup=3
+  conda-build pip boa liblief conda-forge-ci-setup
 
 # Configure conda channels
 conda config --add channels conda-forge
