@@ -28,7 +28,7 @@ parmetis:
 petsc:
   - ">=3.12,<3.20"
 python:
-  - 3.8.* *_cpython
+  - 3.13.* *_cpython
 sundials:
   - ">=3.0,<7.0"
 vtk:

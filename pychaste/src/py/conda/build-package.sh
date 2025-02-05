@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 # Example usage:
-#   ./build-package.sh --variant=linux_64_python3.8_cpython --branch=2024.1 --parallel=4
+#   ./build-package.sh --variant=linux_64_python3.10_cpython --branch=2024.1 --parallel=4
 #
 # Intended for use in a build container e.g.:
 #   docker run --rm -it quay.io/condaforge/linux-anvil-cos7-x86_64 /bin/bash

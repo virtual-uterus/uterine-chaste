@@ -37,8 +37,8 @@ There should be a `<chaste>-<version>-<hash>.tar.bz2` file in the directory.
 Test the newly built package by installing it in a conda environment:
 
 ```bash
-conda create -n py38-env python=3.8
-conda activate py38-env
+conda create -n pychaste-env python=3.10
+conda activate pychaste-env
 conda install -c ./build_artifacts <chaste>-<version>-<hash>.tar.bz2
 ```
 
