@@ -852,7 +852,7 @@ public:
             SimulationTime::Destroy();
         }
 
-        
+        SimulationTime::Instance()->SetStartTime(0.0);
         
         {
             // Load simulation

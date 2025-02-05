@@ -704,6 +704,8 @@ public:
             SimulationTime::Destroy();
         }
         
+        SimulationTime::Instance()->SetStartTime(0.0);
+
         {
             // Load simulation
             OffLatticeSimulation<2>* p_simulator
@@ -854,6 +856,8 @@ public:
 
             SimulationTime::Destroy();
         }
+
+        SimulationTime::Instance()->SetStartTime(0.0);
 
         {
             // Load simulation
@@ -1008,6 +1012,8 @@ public:
 
             SimulationTime::Destroy();
         }
+
+        SimulationTime::Instance()->SetStartTime(0.0);
         
         {
             // Load simulation
