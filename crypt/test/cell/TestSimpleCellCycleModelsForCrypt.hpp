@@ -333,8 +333,10 @@ public:
         WntConcentration<3>::Destroy();
     }
 
-    void noTestArchiveSimpleWntCellCycleModel()
+    void TestArchiveSimpleWntCellCycleModel()
     {
+        EXIT_IF_PARALLEL;
+
         OutputFileHandler handler("archive", false);
         std::string archive_filename = handler.GetOutputDirectoryFullPath() + "simple_wnt_cell_cycle.arch";
 
