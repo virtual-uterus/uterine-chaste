@@ -15,7 +15,7 @@ dependencies:
   - petsc4py>=3.18,<3.19
   - python=3.11
   - sundials>=6.0,<7.0
-  - vtk>=9.1,<9.4
+  - vtk>=9.2,<9.3
   - xerces-c>=3.2,<4.0
   - xsd>=4.0,<4.1
   - xvfbwrapper

@@ -3,6 +3,7 @@ channels:
   - pychaste
 dependencies:
   - boost-cpp>=1.80,<1.86
+  - eigen>=3.0,<4.0
   - hdf5>=1.14,<1.15=*mpich*
   - jupyterlab
   - matplotlib
@@ -15,7 +16,7 @@ dependencies:
   - petsc4py>=3.22,<3.23
   - python=3.13
   - sundials>=6.0,<7.0
-  - vtk>=9.1,<9.4
+  - vtk>=9.3,<9.4
   - xerces-c>=3.3,<4.0
   - xsd>=4.0,<4.1
   - xvfbwrapper
