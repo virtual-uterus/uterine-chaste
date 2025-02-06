@@ -1,0 +1,20 @@
+channels:
+  - conda-forge
+  - pychaste
+dependencies:
+  - boost-cpp>=1.70,<1.84
+  - hdf5>=1.10,<1.14=*mpich*
+  - jupyterlab
+  - matplotlib
+  - metis>=4.0,<6.0
+  - mpi4py
+  - mpich>=4.0,<5.0
+  - numpy
+  - parmetis>=4.0,<6.0
+  - petsc>=3.12,<3.20
+  - petsc4py>=3.12,<3.20
+  - sundials>=3.0,<7.0
+  - vtk>=7.1,<9.4
+  - xerces-c>=3.0,<4.0
+  - xsd
+  - xvfbwrapper
