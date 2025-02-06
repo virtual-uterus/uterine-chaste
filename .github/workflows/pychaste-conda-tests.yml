@@ -53,6 +53,9 @@ jobs:
           python-version: ${{ matrix.python-version }}
           channels: conda-forge,pychaste
 
+      - name: Show environment packages
+        run: conda list
+
       - name: Configure PyChaste
         run: |
           cmake \
