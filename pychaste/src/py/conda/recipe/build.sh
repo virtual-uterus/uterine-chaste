@@ -3,9 +3,6 @@
 mkdir -p ${PREFIX}/build
 cd ${PREFIX}/build || exit
 
-mkdir pychaste
-cp -r /tmp/wrappers pychaste/
-
 # Modify pip settings for internal Chaste Python env
 export PIP_NO_DEPENDENCIES="False"
 export PIP_NO_INDEX="False"

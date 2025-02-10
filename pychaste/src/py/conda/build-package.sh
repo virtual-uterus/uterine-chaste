@@ -95,6 +95,7 @@ conda list --show-channel-urls
 /usr/bin/sudo -n yum install -y libXt-devel mesa-libGLU-devel patch
 
 # Get source code
+# TODO: pre-generate wrappers outside the build container
 git clone --recursive --branch "${branch}" --depth 1 https://github.com/Chaste/Chaste.git /tmp/Chaste
 
 # Build conda package
