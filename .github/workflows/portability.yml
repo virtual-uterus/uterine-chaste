@@ -42,15 +42,11 @@ jobs:
       CC: gcc
       CXX: g++
 
-    defaults:
-      run:
-        shell: bash --login -e -o pipefail {0} # login for environment modules
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: compiler version
+      - name: Compiler version
         run: |
           ${CXX} --version
 
@@ -64,8 +60,11 @@ jobs:
         run: |
           cat > load_modules.sh << 'EOF'
           #!/bin/bash
+          source /etc/profile.d/modules.sh
           module use /home/runner/modules/modulefiles
+          module avail
           module load boost petsc_hdf5 sundials vtk xercesc xsd
+          module list
           EOF
         working-directory: chaste-build-dir
 
