@@ -19,15 +19,21 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - image: jammy.portability-dev
+          - image: portability-01
             extra-build-args: ""
-          - image: jammy.portability-dev
+          - image: portability-01
             extra-build-args: "-DChaste_USE_CVODE=OFF -DChaste_USE_VTK=OFF"
-          - image: focal.portability-system
+          - image: portability-focal
             extra-build-args: ""
-          - image: jammy.portability-system
+          - image: portability-jammy
             extra-build-args: ""
-          - image: noble.portability-system
+          - image: portability-lunar
+            extra-build-args: ""
+          - image: portability-mantic
+            extra-build-args: ""
+          - image: portability-noble
+            extra-build-args: ""
+          - image: portability-oracular
             extra-build-args: ""
 
     runs-on: ubuntu-latest
