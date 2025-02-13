@@ -23,7 +23,11 @@ jobs:
             extra-build-args: ""
           - image: portability-01
             extra-build-args: "-DChaste_USE_CVODE=OFF -DChaste_USE_VTK=OFF"
+          - image: portability-02
+            extra-build-args: ""
           - image: portability-03
+            extra-build-args: ""
+          - image: portability-04
             extra-build-args: ""
           - image: portability-focal
             extra-build-args: ""
