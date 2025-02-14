@@ -9,10 +9,10 @@ If you publish results based on this computation please cite the following:
     and Jose~E. Roman and Karl Rupp and Patrick Sanan and Jason Sarich and Barry~F. Smith
     and Stefano Zampini and Hong Zhang and Hong Zhang and Junchao Zhang},
   Title = {{PETSc/TAO} Users Manual},
-  Number = {ANL-21/39 - Revision 3.20},
+  Number = {ANL-21/39 - Revision 3.21},
   Doi = {10.2172/2205494},
   Institution = {Argonne National Laboratory},
-  Year = {2023}
+  Year = {2024}
 }
 @InProceedings{petsc-efficient,
   Author = {Satish Balay and William D. Gropp and Lois Curfman McInnes and Barry F. Smith},

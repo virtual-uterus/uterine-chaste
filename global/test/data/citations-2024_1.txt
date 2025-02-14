@@ -6,10 +6,10 @@ If you publish results based on this computation please cite the following:
     and Victor Eijkhout and Jacob Faibussowitsch and William~D. Gropp and V'{a}clav Hapla and Tobin Isaac and Pierre Jolivet
     and Dmitry Karpeev and Dinesh Kaushik and Matthew~G. Knepley and Fande Kong and Scott Kruger
     and Dave~A. May and Lois Curfman McInnes and Richard Tran Mills and Lawrence Mitchell and Todd Munson
-    and Jose~E. Roman and Karl Rupp and Patrick Sanan and Jason Sarich and Barry~F. Smith
+    and Jose~E. Roman and Karl Rupp and Patrick Sanan and Jason Sarich and Barry~F. Smith and Hansol Suh
     and Stefano Zampini and Hong Zhang and Hong Zhang and Junchao Zhang},
   Title = {{PETSc/TAO} Users Manual},
-  Number = {ANL-21/39 - Revision 3.21},
+  Number = {ANL-21/39 - Revision 3.22},
   Doi = {10.2172/2205494},
   Institution = {Argonne National Laboratory},
   Year = {2024}
