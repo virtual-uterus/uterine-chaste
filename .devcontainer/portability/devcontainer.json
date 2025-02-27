@@ -3,7 +3,7 @@
 	"name": "Chaste/Portability",
 
 	// Uncomment one of the following to use a different image from
-    // https://hub.docker.com/r/chaste/runner/tags
+	// https://hub.docker.com/r/chaste/runner/tags
 	// "image": "chaste/runner:portability-01",
 	// "image": "chaste/runner:portability-02",
 	// "image": "chaste/runner:portability-03",
@@ -26,11 +26,17 @@
 	},
 
 	"onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
-	"postAttachCommand": "bash --login",
+
+	"postCreateCommand": {
+		"module-use": "sed -i '/^module use/i . /etc/profile.d/modules.sh' ~/.bashrc",
+		"module-load": "echo 'module avail; module load boost petsc_hdf5 sundials vtk xercesc xsd; module list' >> ~/.bashrc"
+	},
+
+	"postAttachCommand": "bash",
 
 	// Configure tool-specific properties.
 	"customizations": {
-		"vscode":{
+		"vscode": {
 			"extensions": [
 				"ms-vscode.cpptools-extension-pack",
 				"ms-vscode.cpptools-themes",
@@ -45,15 +51,15 @@
 	// By default, this is set to the default user in the Docker image.
 	// https://code.visualstudio.com/remote/advancedcontainers/add-nonroot-user
 	"containerUser": "runner",
-	
+
 	// Default container user for VSCode
 	// By default, this is set to the default user in the Docker image.
 	// https://aka.ms/dev-containers-non-root.
 	"remoteUser": "runner",
-	
+
 	"hostRequirements": {
 		"cpus": 2,
-		"memory": "8gb",
-		"storage": "16gb"
+		"memory": "4gb",
+		"storage": "8gb"
 	}
 }
