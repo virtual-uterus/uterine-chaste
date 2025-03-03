@@ -849,14 +849,10 @@ public:
             simulator.SetEndTime(0.2);
             
             // Create PDE and boundary condition objects
-        double constant_coefficient = 0.0;
-        double linear_coefficient = -0.1;
-        double diffusion_coefficient = 1.0;
-        MAKE_PTR_ARGS(UniformSourceEllipticPde<2>, p_pde, (constant_coefficient, linear_coefficient, diffusion_coefficient));
-        MAKE_PTR_ARGS(ConstBoundaryCondition<2>, p_bc, (1.0));
-
-            // Create PDE and boundary condition objects
-            MAKE_PTR_ARGS(UniformSourceEllipticPde<2>, p_pde, (-0.1));
+            double constant_coefficient = 0.0;
+            double linear_coefficient = -0.1;
+            double diffusion_coefficient = 1.0;
+            MAKE_PTR_ARGS(UniformSourceEllipticPde<2>, p_pde, (constant_coefficient, linear_coefficient, diffusion_coefficient));
             MAKE_PTR_ARGS(ConstBoundaryCondition<2>, p_bc, (1.0));
 
             // Create a PDE modifier and set the name of the dependent variable in the PDE
@@ -950,10 +946,6 @@ public:
             OffLatticeSimulation<2> simulator(cell_population);
             simulator.SetOutputDirectory(output_directory);
             simulator.SetEndTime(end_time);
-
-            // Create PDE and boundary condition objects
-            MAKE_PTR_ARGS(CellwiseSourceEllipticPde<2>, p_pde, (cell_population, -0.03));
-            MAKE_PTR_ARGS(ConstBoundaryCondition<2>, p_bc, (1.0));
 
             // Create PDE and boundary condition objects
             double constant_coefficient = 0.0;
