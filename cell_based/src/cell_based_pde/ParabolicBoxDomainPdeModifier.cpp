@@ -267,7 +267,7 @@ Vec ParabolicBoxDomainPdeModifier<DIM>::InterpolateSolutionFromCellMovement(Abst
             }
             catch (Exception&) // not_in_mesh
             {
-                //Don't do anything as these FE nodes are outside of the Cell mesh.               
+                // Don't do anything as these FE nodes are outside the Cell mesh, and it's fine to do nothing.
             }
         }   
     }
