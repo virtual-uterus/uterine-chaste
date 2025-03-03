@@ -145,6 +145,7 @@ template<unsigned DIM>
 double AveragedSourceEllipticPde<DIM>::ComputeConstantInUSourceTerm(const ChastePoint<DIM>& rX, Element<DIM,DIM>* pElement)
 {
     assert(!mCellDensityOnCoarseElements.empty());
+    EXCEPT_IF(pElement == nullptr);
     return mConstantSourceCoefficient * mCellDensityOnCoarseElements[pElement->GetIndex()];
 }
 
