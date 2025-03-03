@@ -54,11 +54,6 @@ AbstractGrowingDomainPdeModifier<DIM>::AbstractGrowingDomainPdeModifier(boost::s
 }
 
 template<unsigned DIM>
-AbstractGrowingDomainPdeModifier<DIM>::~AbstractGrowingDomainPdeModifier()
-{
-}
-
-template<unsigned DIM>
 void AbstractGrowingDomainPdeModifier<DIM>::GenerateFeMesh(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     if (this->mDeleteFeMesh)
@@ -133,7 +128,7 @@ void AbstractGrowingDomainPdeModifier<DIM>::UpdateCellData(AbstractCellPopulatio
                  element_iter != p_tet_node->ContainingElementsEnd();
                  ++element_iter)
             {
-                // Calculate the basis functions at any point (eg zero) in the element
+                // Calculate the basis functions at any point (e.g. zero) in the element
                 c_matrix<double, DIM, DIM> jacobian, inverse_jacobian;
                 double jacobian_det;
                 this->mpFeMesh->GetInverseJacobianForElement(*element_iter, jacobian, jacobian_det, inverse_jacobian);

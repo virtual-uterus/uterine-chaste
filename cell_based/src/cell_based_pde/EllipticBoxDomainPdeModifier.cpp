@@ -53,11 +53,6 @@ EllipticBoxDomainPdeModifier<DIM>::EllipticBoxDomainPdeModifier(boost::shared_pt
 }
 
 template<unsigned DIM>
-EllipticBoxDomainPdeModifier<DIM>::~EllipticBoxDomainPdeModifier()
-{
-}
-
-template<unsigned DIM>
 void EllipticBoxDomainPdeModifier<DIM>::UpdateAtEndOfTimeStep(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     // Set up boundary conditions

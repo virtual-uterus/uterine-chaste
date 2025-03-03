@@ -37,11 +37,11 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 template<unsigned DIM>
 CellwiseSourceParabolicPde<DIM>::CellwiseSourceParabolicPde(AbstractCellPopulation<DIM,DIM>& rCellPopulation,
-                                                            double constantSourceCoefficient, 
-                                                            double linearSourceCoefficient, 
-                                                            double diffusionCoefficient,
-                                                            double duDtCoefficient,
-                                                            bool scaleByCellVolume)
+                                                            const double constantSourceCoefficient,
+                                                            const double linearSourceCoefficient,
+                                                            const double diffusionCoefficient,
+                                                            const double duDtCoefficient,
+                                                            const bool scaleByCellVolume)
     : mrCellPopulation(rCellPopulation),
       mConstantSourceCoefficient(constantSourceCoefficient),
       mLinearSourceCoefficient(linearSourceCoefficient),
@@ -98,7 +98,6 @@ template<unsigned DIM>
 double CellwiseSourceParabolicPde<DIM>::ComputeSourceTerm(const ChastePoint<DIM>& rX, double u, Element<DIM,DIM>* pElement)
 {
     NEVER_REACHED;
-    return 0.0;
 }
 // LCOV_EXCL_STOP
 

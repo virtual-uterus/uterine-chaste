@@ -99,23 +99,23 @@ protected:
      * Default to true.
      */
     bool mSetBcsOnBoxBoundary;
-    
+
     /**
-     * Whether to set the boundary condition on a sphere which bounds the cell centres of the tissue. 
+     * Whether to set the boundary condition on a sphere which bounds the cell centres of the tissue.
      * Only used if mSetBcsOnBoxBoundary is false.
      * Default to false.
      */
     bool mSetBcsOnBoundingSphere;
 
     /**
-     * Whether to use a cell centres voroni region to interpolate the pde solution onto cells.
+     * Whether to use a cell centres Voronoi region to interpolate the pde solution onto cells.
      */
     bool mUseVoronoiCellsForInterpolation;
 
-    /** 
+    /**
      * Used to define if a FE node is within a certain radius of a cell centre to help define
-     * boundary conditions when mSetBcsOnBoxBoundary and mSetBcsOnBoundingSphere are false 
-     * 
+     * boundary conditions when mSetBcsOnBoxBoundary and mSetBcsOnBoundingSphere are false
+     *
      * defaults to 0.5 CD
      */
     double mTypicalCellRadius;
@@ -143,12 +143,12 @@ public:
     /**
      * Destructor.
      */
-    virtual ~AbstractBoxDomainPdeModifier();
+    ~AbstractBoxDomainPdeModifier() override = default;
 
     /**
      * @return mStepSize.
      */
-    double GetStepSize();
+    double GetStepSize() const;
 
     /**
      * Set mSetBcsOnCoarseBoundary.
@@ -160,24 +160,24 @@ public:
     /**
      * @return mSetBcsOnCoarseBoundary.
      */
-    bool AreBcsSetOnBoxBoundary();
+    bool AreBcsSetOnBoxBoundary() const;
 
     /**
      * Set mSetBcsOnBoundingSphere.
      *
-     * @param setBcsOnBoxBoundary whether to set the boundary condition on the edge of the box domain rather than the cell population
+     * @param setBcsOnBoundingSphere whether to set the boundary condition on the edge of the box domain rather than the cell population
      */
-    void SetBcsOnBoundingSphere(bool setBcsOnBoxBoundary);
+    void SetBcsOnBoundingSphere(bool setBcsOnBoundingSphere);
 
     /**
      * @return mSetBcsOnBoundingSphere.
      */
-    bool AreBcsSetOnBoundingSphere();
+    bool AreBcsSetOnBoundingSphere() const;
 
     /**
      * Set mUseVoronoiCellsForInterpolation.
      *
-     * @param useVoronoiCellsForInterpolation whether to use the voroni region of cells for interpolation 
+     * @param useVoronoiCellsForInterpolation whether to use the Voronoi region of cells for interpolation
      * of the solution from the FE mesh to the cells.
      */
     void SetUseVoronoiCellsForInterpolation(bool useVoronoiCellsForInterpolation);
@@ -185,28 +185,28 @@ public:
     /**
      * @return mUseVoronoiCellsForInterpolation.
      */
-    bool GetUseVoronoiCellsForInterpolation();
+    bool GetUseVoronoiCellsForInterpolation() const;
 
     /**
      * Set mTypicalCellRadius.
      *
-     * @param typicalCellRadius the radius to use for deining if FE nodes are near cells or not.
+     * @param typicalCellRadius the radius to use for defining if FE nodes are near cells or not.
      */
     void SetTypicalCellRadius(double typicalCellRadius);
 
     /**
      * @return mTypicalCellRadius.
      */
-    double GetTypicalCellRadius();
+    double GetTypicalCellRadius() const;
 
 
     /**
      * Helper method to construct the boundary conditions container for the PDE.
      *
      * @param rCellPopulation reference to the cell population
-     * @param pBcc the boundary conditions container to fill 
+     * @param pBcc the boundary conditions container to fill
      */
-    void ConstructBoundaryConditionsContainerHelper(AbstractCellPopulation<DIM,DIM>& rCellPopulation, 
+    void ConstructBoundaryConditionsContainerHelper(AbstractCellPopulation<DIM,DIM>& rCellPopulation,
                                                     std::shared_ptr<BoundaryConditionsContainer<DIM,DIM,1> > pBcc);
 
     /**
@@ -219,7 +219,7 @@ public:
      * @param rCellPopulation reference to the cell population
      * @param outputDirectory the output directory, relative to where Chaste output is stored
      */
-    virtual void SetupSolve(AbstractCellPopulation<DIM,DIM>& rCellPopulation, std::string outputDirectory);
+    void SetupSolve(AbstractCellPopulation<DIM, DIM>& rCellPopulation, std::string outputDirectory) override;
 
     /**
      * Helper method to generate the pde mesh for the first time.
@@ -270,7 +270,7 @@ public:
      *
      * @param rParamsFile the file stream to which the parameters are output
      */
-    void OutputSimulationModifierParameters(out_stream& rParamsFile);
+    void OutputSimulationModifierParameters(out_stream& rParamsFile) override;
 };
 
 #include "SerializationExportWrapper.hpp"

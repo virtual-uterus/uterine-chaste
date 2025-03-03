@@ -104,7 +104,7 @@ protected:
     /** Diffusion coefficient. */
     double mDiffusionCoefficient;
 
-    /** Whether to scale tems by cell volume*/
+    /** Whether to scale terms by cell volume. */
     bool mScaleByCellVolume;
 
     /** Vector of averaged cell densities on elements of the coarse mesh. */
@@ -158,7 +158,7 @@ public:
      * @param rCoarseMesh reference to the coarse mesh
      * @param pCellPdeElementMap optional pointer to the map from cells to coarse elements
      */
-    void virtual SetupSourceTerms(TetrahedralMesh<DIM,DIM>& rCoarseMesh, std::map<CellPtr, unsigned>* pCellPdeElementMap=nullptr);
+    void virtual SetupSourceTerms(TetrahedralMesh<DIM, DIM>& rCoarseMesh, std::map<CellPtr, unsigned>* pCellPdeElementMap = nullptr);
 
     /**
      * Overridden ComputeConstantInUSourceTerm() method.
@@ -169,7 +169,7 @@ public:
      * @return the constant in u part of the source term, i.e g(x) in
      *  Div(D Grad u)  +  f(x)u + g(x) = 0.
      */
-    double ComputeConstantInUSourceTerm(const ChastePoint<DIM>& rX, Element<DIM,DIM>* pElement);
+    double ComputeConstantInUSourceTerm(const ChastePoint<DIM>& rX, Element<DIM, DIM>* pElement) override;
 
     /**
      * Overridden ComputeLinearInUCoeffInSourceTerm() method.
@@ -180,7 +180,7 @@ public:
      * @return the coefficient of u in the linear part of the source term, i.e f(x) in
      *  Div(D Grad u)  +  f(x)u + g(x) = 0.
      */
-    double ComputeLinearInUCoeffInSourceTerm(const ChastePoint<DIM>& rX, Element<DIM,DIM>* pElement);
+    double ComputeLinearInUCoeffInSourceTerm(const ChastePoint<DIM>& rX, Element<DIM, DIM>* pElement) override;
 
     /**
      * Overridden ComputeDiffusionTerm() method.
@@ -189,7 +189,7 @@ public:
      *
      * @return a matrix.
      */
-    c_matrix<double,DIM,DIM> ComputeDiffusionTerm(const ChastePoint<DIM>& rX);
+    c_matrix<double,DIM,DIM> ComputeDiffusionTerm(const ChastePoint<DIM>& rX) override;
 
     /**
      * @return the uptake rate.

@@ -56,11 +56,6 @@ ParabolicBoxDomainPdeModifier<DIM>::ParabolicBoxDomainPdeModifier(boost::shared_
 }
 
 template<unsigned DIM>
-ParabolicBoxDomainPdeModifier<DIM>::~ParabolicBoxDomainPdeModifier()
-{
-}
-
-template<unsigned DIM>
 void ParabolicBoxDomainPdeModifier<DIM>::UpdateAtEndOfTimeStep(AbstractCellPopulation<DIM,DIM>& rCellPopulation)
 {
     // Set up boundary conditions
@@ -102,7 +97,7 @@ void ParabolicBoxDomainPdeModifier<DIM>::UpdateAtEndOfTimeStep(AbstractCellPopul
     // Now copy solution to cells
     this->UpdateCellData(rCellPopulation);
 
-    // Finally, if needed store the locations of cells to be used as old loactions in the next timestep
+    // Finally, if needed store the locations of cells to be used as old locations in the next timestep
     if (mMoveSolutionWithCells)
     {
         /*
@@ -233,7 +228,7 @@ Vec ParabolicBoxDomainPdeModifier<DIM>::InterpolateSolutionFromCellMovement(Abst
     MutableMesh<DIM,DIM> cell_mesh(temp_nodes);
 
     // Make the deformed mesh. Based on the displacement of cells. 
-    TetrahedralMesh<DIM, DIM>* p_deformed_mesh = new TetrahedralMesh<DIM,DIM>();
+    auto* p_deformed_mesh = new TetrahedralMesh<DIM,DIM>();
     this->GenerateAndReturnFeMesh(this->mpMeshCuboid,this->mStepSize,p_deformed_mesh);
     
     for (typename TetrahedralMesh<DIM, DIM>::NodeIterator node_iter = p_deformed_mesh->GetNodeIteratorBegin();
@@ -259,7 +254,7 @@ Vec ParabolicBoxDomainPdeModifier<DIM>::InterpolateSolutionFromCellMovement(Abst
                 c_vector<double,DIM> interpolated_cell_displacement = zero_vector<double>(DIM);
                 for (unsigned i=0; i<DIM+1; i++)
                 {
-                    c_vector<double,DIM> nodal_value = cell_displacements[p_element->GetNodeGlobalIndex(i)];
+                    const c_vector<double,DIM>& nodal_value = cell_displacements[p_element->GetNodeGlobalIndex(i)];
                     interpolated_cell_displacement += nodal_value * weights(i);
                 }
                 new_node_location = node_location + interpolated_cell_displacement;
@@ -339,7 +334,7 @@ void ParabolicBoxDomainPdeModifier<DIM>::SetMoveSolutionWithCells(bool moveSolut
 }
 
 template<unsigned DIM>
-bool ParabolicBoxDomainPdeModifier<DIM>::GetMoveSolutionWithCells()
+bool ParabolicBoxDomainPdeModifier<DIM>::GetMoveSolutionWithCells() const
 {
     return mMoveSolutionWithCells;
 }

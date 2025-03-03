@@ -93,9 +93,9 @@ void AveragedSourceParabolicPde<DIM>::SetupSourceTerms(TetrahedralMesh<DIM,DIM>&
 {
     // Allocate memory
     mCellDensityOnCoarseElements.resize(rCoarseMesh.GetNumElements());
-    for (unsigned elem_index=0; elem_index<mCellDensityOnCoarseElements.size(); elem_index++)
+    for (double & mCellDensityOnCoarseElement : mCellDensityOnCoarseElements)
     {
-        mCellDensityOnCoarseElements[elem_index] = 0.0;
+        mCellDensityOnCoarseElement = 0.0;
     }
 
     // Loop over cells, find which coarse element it is in, and add 1 to mSourceTermOnCoarseElements[elem_index]
@@ -171,7 +171,6 @@ template<unsigned DIM>
 double AveragedSourceParabolicPde<DIM>::ComputeSourceTermAtNode(const Node<DIM>& rNode, double u)
 {
     NEVER_REACHED;
-    return 0.0;
 }
 // LCOV_EXCL_STOP
 

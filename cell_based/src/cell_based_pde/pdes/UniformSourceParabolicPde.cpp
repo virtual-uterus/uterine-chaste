@@ -36,10 +36,10 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "UniformSourceParabolicPde.hpp"
 
 template <unsigned DIM>
-UniformSourceParabolicPde<DIM>::UniformSourceParabolicPde(double constantSourceCoefficient, 
-                                                          double linearSourceCoefficient, 
-                                                          double diffusionCoefficient,
-                                                          double duDtCoefficient)
+UniformSourceParabolicPde<DIM>::UniformSourceParabolicPde(const double constantSourceCoefficient,
+                                                          const double linearSourceCoefficient,
+                                                          const double diffusionCoefficient,
+                                                          const double duDtCoefficient)
     : mConstantSourceCoefficient(constantSourceCoefficient),
       mLinearSourceCoefficient(linearSourceCoefficient),
       mDiffusionCoefficient(diffusionCoefficient),
