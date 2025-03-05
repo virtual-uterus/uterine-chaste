@@ -1717,14 +1717,14 @@ public:
 
     void TestInfiniteElongationShapeFactor()
     {
-        // Test method with a single colinear element
-        std::vector<Node<2>*> colinear_nodes;
-        colinear_nodes.push_back(new Node<2>(0, false, 1.0, 0.0));
-        colinear_nodes.push_back(new Node<2>(1, false, 2.0, 0.0));
-        colinear_nodes.push_back(new Node<2>(2, false, 3.0, -1e-12));
-        std::vector<VertexElement<2,2>*> colinear_element;
-        colinear_element.push_back(new VertexElement<2,2>(0, colinear_nodes));
-        VertexMesh<2,2> mesh(colinear_nodes, colinear_element);
+        // Test method with a single collinear element
+        std::vector<Node<2>*> collinear_nodes;
+        collinear_nodes.push_back(new Node<2>(0, false, 1.0, 0.0));
+        collinear_nodes.push_back(new Node<2>(1, false, 2.0, 0.0));
+        collinear_nodes.push_back(new Node<2>(2, false, 3.0, -1e-12));
+        std::vector<VertexElement<2,2>*> collinear_element;
+        collinear_element.push_back(new VertexElement<2,2>(0, collinear_nodes));
+        VertexMesh<2,2> mesh(collinear_nodes, collinear_element);
 
         // The smallest eigenvalue should be zero, so the elongation shape factor should be infinite
         const double esf = mesh.GetElongationShapeFactorOfElement(0);
