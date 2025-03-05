@@ -657,11 +657,11 @@ double VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetEdgeLength(unsigned elementIndex1,
 }
 
 template <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
-double VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetElongationShapeFactorOfElement(unsigned index)
+double VertexMesh<ELEMENT_DIM, SPACE_DIM>::GetElongationShapeFactorOfElement([[maybe_unused]] const unsigned elementIndex)
 {
     if constexpr (SPACE_DIM == 2)
     {
-        c_vector<double, 3> moments = CalculateMomentsOfElement(index);
+        c_vector<double, 3> moments = CalculateMomentsOfElement(elementIndex);
 
         const double discriminant = sqrt((moments(0) - moments(1)) * (moments(0) - moments(1)) + 4.0 * moments(2) * moments(2));
 
