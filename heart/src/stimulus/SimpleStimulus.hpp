@@ -1,6 +1,6 @@
 /*
 
-Copyright (c) 2005-2025, University of Oxford.
+Copyright (c) 2005-2023, University of Oxford.
 All rights reserved.
 
 University of Oxford means the Chancellor, Masters and Scholars of the
@@ -103,11 +103,40 @@ public:
     double GetStimulus(double time);
 
     /**
-     * Replace the time that was specified in the constructor with a new start time.
+     * Replace the start time that was specified in the constructor with a new start time.
      *
      * @param startTime
      */
     void SetStartTime(double startTime);
+
+    /**
+     * Replace the magnitude that was specified in the constructor with a new magnitude.
+     *
+     * @param magnitude
+     */
+    void SetMagnitude(double magnitude);
+
+    /**
+     * Replace the duration that was specified in the constructor with a new duration.
+     *
+     * @param duration 
+     */
+    void SetDuration(double duration);
+
+    /**
+     * Return the start time that was specified.
+     */
+	double GetStartTime();
+
+    /**
+     * Return the magnitude that was specified.
+     */
+	double GetMagnitude();
+
+    /**
+     * Return the duration that was specified.
+     */
+	double GetDuration();
 };
 
 
