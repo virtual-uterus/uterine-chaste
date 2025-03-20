@@ -1,6 +1,6 @@
 /*
 
-Copyright (c) 2005-2025, University of Oxford.
+Copyright (c) 2005-2023, University of Oxford.
 All rights reserved.
 
 University of Oxford means the Chancellor, Masters and Scholars of the
@@ -78,6 +78,31 @@ double SimpleStimulus::GetStimulus(double time)
 void SimpleStimulus::SetStartTime(double startTime)
 {
     mTimeOfStimulus = startTime;
+}
+
+void SimpleStimulus::SetMagnitude(double magnitude)
+{
+	mMagnitudeOfStimulus = magnitude;
+}
+
+void SimpleStimulus::SetDuration(double duration)
+{
+	mDuration = duration;
+}
+
+double SimpleStimulus::GetStartTime()
+{
+	return mTimeOfStimulus;
+}
+
+double SimpleStimulus::GetMagnitude()
+{
+	return mMagnitudeOfStimulus;
+}
+
+double SimpleStimulus::GetDuration()
+{
+	return mDuration;
 }
 
 // Serialization for Boost >= 1.36
