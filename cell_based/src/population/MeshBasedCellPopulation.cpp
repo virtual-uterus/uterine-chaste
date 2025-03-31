@@ -1021,7 +1021,7 @@ typename MeshBasedCellPopulation<ELEMENT_DIM,SPACE_DIM>::SpringIterator& MeshBas
 
 template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 MeshBasedCellPopulation<ELEMENT_DIM,SPACE_DIM>::SpringIterator::SpringIterator(
-            const MeshBasedCellPopulation<ELEMENT_DIM,SPACE_DIM>& rCellPopulation,
+            MeshBasedCellPopulation<ELEMENT_DIM,SPACE_DIM>& rCellPopulation,
             typename MutableMesh<ELEMENT_DIM,SPACE_DIM>::EdgeIterator edgeIter)
     : mrCellPopulation(rCellPopulation),
       mEdgeIter(edgeIter)
