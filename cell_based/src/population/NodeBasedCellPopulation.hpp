@@ -346,16 +346,6 @@ public:
     void Update(bool hasHadBirthsOrDeaths=true);
 
     /**
-     * Overridden method to return pairs of nodes.
-     *
-     * This vector is calculated using a box collection, and is updated in the ::Update
-     * method each timestep.
-     *
-     * @return A vector of pairs of nodes that may interact mechanically.
-     */
-    [[nodiscard]] const std::vector<std::pair<Node<DIM>*, Node<DIM>*> >& rGetNodePairs() const override;
-
-    /**
      * Outputs CellPopulation parameters to file
      *
      * As this method is pure virtual, it must be overridden

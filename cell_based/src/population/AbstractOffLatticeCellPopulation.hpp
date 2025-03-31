@@ -220,20 +220,20 @@ public:
     /**
      * Method to return the connected nodes in an off-lattice population.
      *
-     * This method throws an exception in the abstract class, warning the user that
-     * it must be overridden in any derived cell population for which it has meaning.
+     * Note that the derived populations are responsible for updating this vector. If
+     * you call this method on a population that doesn't use mNodePairs, you will just
+     * receive a reference to an empty vector.
      *
      * @return A vector of pairs of nodes that may interact mechanically.
      */
     [[nodiscard]] virtual const std::vector<std::pair<Node<SPACE_DIM>*, Node<SPACE_DIM>*> >& rGetNodePairs() const;
 
     /**
-     * Return modifiable mNodePairs vector, with no additional computation.
+     * Return modifiable mNodePairs vector.
      *
-     * This will not recalculate node pairs as may happen, for instance, in
-     * MeshBasedCellPopulation::rGetNodePairs. This method should only be used if you
-     * need to modify the underlying vector itself. To simply iterate over pairs of
-     * nodes, call the const rGetNodePairs method instead.
+     * This method should only be used if you need to modify the underlying vector
+     * itself. To simply iterate over pairs of nodes, call the const rGetNodePairs
+     * method instead.
      *
      * @return A modifiable reference to mNodePairs.
      */

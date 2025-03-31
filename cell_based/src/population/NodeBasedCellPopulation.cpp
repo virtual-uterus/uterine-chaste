@@ -285,12 +285,6 @@ void NodeBasedCellPopulation<DIM>::UpdateParticlesAfterReMesh(NodeMap& rMap)
 {
 }
 
-template <unsigned DIM>
-const std::vector<std::pair<Node<DIM>*, Node<DIM>*> >& NodeBasedCellPopulation<DIM>::rGetNodePairs() const
-{
-    return this->mNodePairs;
-}
-
 template<unsigned DIM>
 void NodeBasedCellPopulation<DIM>::OutputCellPopulationParameters(out_stream& rParamsFile)
 {

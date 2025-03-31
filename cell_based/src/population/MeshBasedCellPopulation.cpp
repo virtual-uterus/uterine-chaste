@@ -1176,16 +1176,6 @@ void MeshBasedCellPopulation<ELEMENT_DIM,SPACE_DIM>::SetAreaBasedDampingConstant
     mAreaBasedDampingConstantParameter = areaBasedDampingConstantParameter;
 }
 
-// LCOV_EXCL_START
-template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
-std::vector< std::pair<Node<SPACE_DIM>*, Node<SPACE_DIM>* > >& MeshBasedCellPopulation<ELEMENT_DIM,SPACE_DIM>::rGetNodePairs()
-{
-    //mNodePairs.Clear();
-    NEVER_REACHED;
-    return mNodePairs;
-}
-// LCOV_EXCL_STOP
-
 template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MeshBasedCellPopulation<ELEMENT_DIM,SPACE_DIM>::OutputCellPopulationParameters(out_stream& rParamsFile)
 {

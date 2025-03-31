@@ -102,7 +102,7 @@ double AbstractOffLatticeCellPopulation<ELEMENT_DIM, SPACE_DIM>::GetAbsoluteMove
 template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 const std::vector<std::pair<Node<SPACE_DIM>*, Node<SPACE_DIM>*> >& AbstractOffLatticeCellPopulation<ELEMENT_DIM, SPACE_DIM>::rGetNodePairs() const
 {
-    EXCEPTION("This method must be overridden in any derived cell population using this functionality.");
+    return mNodePairs;
 }
 
 template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
