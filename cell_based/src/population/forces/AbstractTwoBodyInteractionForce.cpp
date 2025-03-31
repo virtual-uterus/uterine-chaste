@@ -98,28 +98,17 @@ void AbstractTwoBodyInteractionForce<ELEMENT_DIM,SPACE_DIM>::AddForceContributio
     {
         AbstractCentreBasedCellPopulation<ELEMENT_DIM,SPACE_DIM>* p_static_cast_cell_population = static_cast<AbstractCentreBasedCellPopulation<ELEMENT_DIM,SPACE_DIM>*>(&rCellPopulation);
 
-        std::vector< std::pair<Node<SPACE_DIM>*, Node<SPACE_DIM>* > >& r_node_pairs = p_static_cast_cell_population->rGetNodePairs();
-
-        for (typename std::vector< std::pair<Node<SPACE_DIM>*, Node<SPACE_DIM>* > >::iterator iter = r_node_pairs.begin();
-            iter != r_node_pairs.end();
-            iter++)
+        const std::vector< std::pair<Node<SPACE_DIM>*, Node<SPACE_DIM>* > >& r_node_pairs = p_static_cast_cell_population->rGetNodePairs();
+        for (const auto& [p_node_a, p_node_b] : r_node_pairs)
         {
-            std::pair<Node<SPACE_DIM>*, Node<SPACE_DIM>* > pair = *iter;
+            unsigned node_a_index = p_node_a->GetIndex();
+            unsigned node_b_index = p_node_b->GetIndex();
 
-            unsigned node_a_index = pair.first->GetIndex();
-            unsigned node_b_index = pair.second->GetIndex();
-
-            // Calculate the force between nodes
             c_vector<double, SPACE_DIM> force = CalculateForceBetweenNodes(node_a_index, node_b_index, rCellPopulation);
-            for (unsigned j=0; j<SPACE_DIM; j++)
-            {
-                assert(!std::isnan(force[j]));
-            }
+            assert(std::none_of(force.begin(), force.end(), [](double x) { return std::isnan(x); }));
 
-            // Add the force contribution to each node
-            c_vector<double, SPACE_DIM> negative_force = -1.0*force;
-            pair.first->AddAppliedForceContribution(force);
-            pair.second->AddAppliedForceContribution(negative_force);
+            p_node_a->AddAppliedForceContribution(force);
+            p_node_b->AddAppliedForceContribution(-1.0 * force);
         }
     }
 }

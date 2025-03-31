@@ -68,9 +68,6 @@ private:
     /** Vector of maximal spatial positions in each dimension. */
     c_vector<double, DIM> mMaxSpatialPositions;
 
-    /** Node pairs for force calculations. */
-    std::vector< std::pair<Node<DIM>*, Node<DIM>* > > mNodePairs;
-
     /** Whether to delete the nodes-only mesh (taken in one of the constructors, defaults to false). */
     bool mDeleteMesh;
 
@@ -349,11 +346,14 @@ public:
     void Update(bool hasHadBirthsOrDeaths=true);
 
     /**
-     * Overridden rGetNodePairs method
+     * Overridden method to return pairs of nodes.
      *
-     * @return Node pairs for force calculation.
+     * This vector is calculated using a box collection, and is updated in the ::Update
+     * method each timestep.
+     *
+     * @return A vector of pairs of nodes that may interact mechanically.
      */
-    std::vector< std::pair<Node<DIM>*, Node<DIM>* > >& rGetNodePairs();
+    [[nodiscard]] const std::vector<std::pair<Node<DIM>*, Node<DIM>*> >& rGetNodePairs() const override;
 
     /**
      * Outputs CellPopulation parameters to file
