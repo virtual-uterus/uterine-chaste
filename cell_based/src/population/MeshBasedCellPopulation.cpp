@@ -291,13 +291,6 @@ void MeshBasedCellPopulation<ELEMENT_DIM,SPACE_DIM>::Update(bool hasHadBirthsOrD
     ///\todo check if there is a more efficient way of keeping track of node velocity information (#2404)
     bool output_node_velocities = (this-> template HasWriter<NodeVelocityWriter>());
 
-    // Update node pairs
-    this->mNodePairs.empty();
-    for (SpringIterator spring_it = SpringsBegin(); spring_it != SpringsEnd(); ++spring_it)
-    {
-        this->mNodePairs.emplace_back(spring_it.GetNodeA(), spring_it.GetNodeB());
-    }
-
     /**
      * If node radii are set, then we must keep a record of these, since they will be cleared during
      * the remeshing process. We then restore these attributes to the nodes after calling ReMesh().
@@ -439,6 +432,13 @@ void MeshBasedCellPopulation<ELEMENT_DIM,SPACE_DIM>::Update(bool hasHadBirthsOrD
          ++spring_it)
     {
         this->mMarkedSprings.erase(**spring_it);
+    }
+
+    // Update node pairs. Note, this must happen after remeshing.
+    this->mNodePairs.clear();
+    for (SpringIterator spring_it = SpringsBegin(); spring_it != SpringsEnd(); ++spring_it)
+    {
+        this->mNodePairs.emplace_back(spring_it.GetNodeA(), spring_it.GetNodeB());
     }
 
     // Tessellate if needed
