@@ -67,6 +67,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "FileComparison.hpp"
 #include "SimpleTargetAreaModifier.hpp"
 #include "OffLatticeSimulation.hpp"
+#include "Warnings.hpp"
 
 #include "PetscSetupAndFinalize.hpp"
 
