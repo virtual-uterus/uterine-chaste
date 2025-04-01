@@ -1626,32 +1626,22 @@ public:
         // Create cell population
         MeshBasedCellPopulation<2> cell_population(mesh, cells);
 
-        // Node pairs are not calculated until Update()
+        const auto& r_node_pairs = cell_population.rGetNodePairs();
+        TS_ASSERT_EQUALS(r_node_pairs.size(), 8ul);
+
+        auto vec_idx = 0ul;
+        for (auto spring_it = cell_population.SpringsBegin(); spring_it != cell_population.SpringsEnd(); ++spring_it)
         {
-            const auto& r_node_pairs = cell_population.rGetNodePairs();
-            TS_ASSERT(r_node_pairs.empty());
-        }
+            const unsigned spring_it_node_a_idx = spring_it.GetNodeA()->GetIndex();
+            const unsigned spring_it_node_b_idx = spring_it.GetNodeB()->GetIndex();
 
-        // After update, we should have all node pairs
-        {
-            cell_population.Update();
-            const auto& r_node_pairs = cell_population.rGetNodePairs();
-            TS_ASSERT_EQUALS(r_node_pairs.size(), 8ul);
+            const unsigned vec_node_a_idx = r_node_pairs[vec_idx].first->GetIndex();
+            const unsigned vec_node_b_idx = r_node_pairs[vec_idx].second->GetIndex();
 
-            auto vec_idx = 0ul;
-            for (auto spring_it = cell_population.SpringsBegin(); spring_it != cell_population.SpringsEnd(); ++spring_it)
-            {
-                const unsigned spring_it_node_a_idx = spring_it.GetNodeA()->GetIndex();
-                const unsigned spring_it_node_b_idx = spring_it.GetNodeB()->GetIndex();
+            TS_ASSERT_EQUALS(spring_it_node_a_idx, vec_node_a_idx);
+            TS_ASSERT_EQUALS(spring_it_node_b_idx, vec_node_b_idx);
 
-                const unsigned vec_node_a_idx = r_node_pairs[vec_idx].first->GetIndex();
-                const unsigned vec_node_b_idx = r_node_pairs[vec_idx].second->GetIndex();
-
-                TS_ASSERT_EQUALS(spring_it_node_a_idx, vec_node_a_idx);
-                TS_ASSERT_EQUALS(spring_it_node_b_idx, vec_node_b_idx);
-
-                vec_idx++;
-            }
+            vec_idx++;
         }
     }
 };

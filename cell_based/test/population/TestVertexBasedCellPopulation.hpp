@@ -1520,22 +1520,6 @@ public:
         delete p_tetrahedral_mesh;
     }
 
-    void TestGetNodePairsException()
-    {
-        // Create a small cell population
-        HoneycombVertexMeshGenerator generator(1, 1);
-        boost::shared_ptr<MutableVertexMesh<2,2> > p_mesh = generator.GetMesh();
-
-        std::vector<CellPtr> cells;
-        CellsGenerator<FixedG1GenerationalCellCycleModel, 2> cells_generator;
-        cells_generator.GenerateBasic(cells, p_mesh->GetNumElements());
-
-        VertexBasedCellPopulation<2> cell_population(*p_mesh, cells);
-
-        TS_ASSERT_THROWS_THIS((void) cell_population.rGetNodePairs(),
-            "This method must be overridden in any derived cell population using this functionality.");
-    }
-
     void TestGetCellDataItemAtPdeNode()
     {
         // Create a small cell population
