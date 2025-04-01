@@ -98,7 +98,7 @@ protected:
      * Some derived populations (e.g. VertexBased) do not use this, but others (e.g.
      * NodeBased) need to provide pairs of nodes for force calculations.
      */
-    mutable std::vector<std::pair<Node<SPACE_DIM>*, Node<SPACE_DIM>*> > mNodePairs = {};
+    std::vector<std::pair<Node<SPACE_DIM>*, Node<SPACE_DIM>*> > mNodePairs = {};
 
     /**
      * Constructor that just takes in a mesh.

@@ -158,6 +158,9 @@ protected:
     /** Whether springs have variable rest lengths. */
     bool mHasVariableRestLength;
 
+    /** Update mNodePairs using the SpringIterator. */
+    virtual void UpdateNodePairs();
+
     /**
      * Update mIsGhostNode if required by a remesh.
      *

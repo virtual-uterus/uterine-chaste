@@ -75,6 +75,8 @@ MeshBasedCellPopulation<ELEMENT_DIM, SPACE_DIM>::MeshBasedCellPopulation(Mutable
         Validate();
     }
 
+    UpdateNodePairs();
+
     // Initialise the applied force at each node to zero
     for (typename AbstractMesh<ELEMENT_DIM, SPACE_DIM>::NodeIterator node_iter = this->rGetMesh().GetNodeIteratorBegin();
          node_iter != this->rGetMesh().GetNodeIteratorEnd();
@@ -91,6 +93,7 @@ MeshBasedCellPopulation<ELEMENT_DIM,SPACE_DIM>::MeshBasedCellPopulation(MutableM
     mpMutableMesh = static_cast<MutableMesh<ELEMENT_DIM,SPACE_DIM>* >(&(this->mrMesh));
     mpVoronoiTessellation = nullptr;
     mDeleteMesh = true;
+    UpdateNodePairs();
 }
 
 template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
@@ -286,6 +289,16 @@ unsigned MeshBasedCellPopulation<ELEMENT_DIM,SPACE_DIM>::RemoveDeadCells()
 }
 
 template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+void MeshBasedCellPopulation<ELEMENT_DIM,SPACE_DIM>::UpdateNodePairs()
+{
+    this->mNodePairs.clear();
+    for (SpringIterator spring_it = SpringsBegin(); spring_it != SpringsEnd(); ++spring_it)
+    {
+        this->mNodePairs.emplace_back(spring_it.GetNodeA(), spring_it.GetNodeB());
+    }
+}
+
+template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 void MeshBasedCellPopulation<ELEMENT_DIM,SPACE_DIM>::Update(bool hasHadBirthsOrDeaths)
 {
     ///\todo check if there is a more efficient way of keeping track of node velocity information (#2404)
@@ -435,11 +448,7 @@ void MeshBasedCellPopulation<ELEMENT_DIM,SPACE_DIM>::Update(bool hasHadBirthsOrD
     }
 
     // Update node pairs. Note, this must happen after remeshing.
-    this->mNodePairs.clear();
-    for (SpringIterator spring_it = SpringsBegin(); spring_it != SpringsEnd(); ++spring_it)
-    {
-        this->mNodePairs.emplace_back(spring_it.GetNodeA(), spring_it.GetNodeB());
-    }
+    UpdateNodePairs();
 
     // Tessellate if needed
     TessellateIfNeeded();
