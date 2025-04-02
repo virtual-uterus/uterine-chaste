@@ -29,6 +29,8 @@ jobs:
             extra-build-args: ""
           - image: portability-04
             extra-build-args: ""
+          - image: portability-05
+            extra-build-args: ""
           - image: portability-focal
             extra-build-args: ""
           - image: portability-jammy
@@ -40,8 +42,6 @@ jobs:
           - image: portability-noble
             extra-build-args: ""
           - image: portability-oracular
-            extra-build-args: ""
-          - image: portability-dev
             extra-build-args: ""
 
     runs-on: ubuntu-latest
