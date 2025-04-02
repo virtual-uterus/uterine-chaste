@@ -23,7 +23,7 @@ jobs:
         include:
           - project_org: "Chaste"
             project_repo: "CellBasedComparison2017"
-            ref: "5e5f8a77e7b94c493ff047a656bfd3c834c78042"
+            ref: ""
             build_target: "project_CellBasedComparison2017"
             test_target: "project_CellBasedComparison2017"
 
@@ -59,6 +59,12 @@ jobs:
 
     - name: cmake configure
       run: cmake -DCMAKE_BUILD_TYPE=Release -DChaste_ERROR_ON_WARNING=OFF ..
+      working-directory: chaste-build-dir
+
+    - name: run TestChasteBuildInfo
+      run: |
+        cmake --build . --target TestChasteBuildInfo --parallel 4
+        ctest -V -R TestChasteBuildInfo
       working-directory: chaste-build-dir
 
     - name: build targets
