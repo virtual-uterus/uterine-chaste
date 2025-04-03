@@ -17,7 +17,7 @@ jobs:
 
     runs-on: ubuntu-22.04
     container:
-      image: chaste/runner:jammy
+      image: chaste/runner:coverage-runner
       env:
         RUNNER_OFF: 1
       volumes:
