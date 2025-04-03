@@ -92,7 +92,6 @@ MeshBasedCellPopulationWithGhostNodes<DIM>::MeshBasedCellPopulationWithGhostNode
       mGhostGhostSpringStiffness(ghostGhostSpringStiffness),
       mGhostSpringRestLength(ghostSpringRestLength)
 {
-    this->UpdateNodePairs();
 }
 
 template<unsigned DIM>

@@ -69,6 +69,7 @@ private:
         archive & mDampingConstantNormal;
         archive & mDampingConstantMutant;
         archive & mAbsoluteMovementThreshold;
+        archive & mNodePairs;
     }
 
 protected:
