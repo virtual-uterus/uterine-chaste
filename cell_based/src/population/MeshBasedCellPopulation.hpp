@@ -100,6 +100,7 @@ private:
         archive & mOffsetNewBoundaryNodes;
         archive & mHasVariableRestLength;
         this->Validate();
+        this->UpdateNodePairs();
     }
 
 protected:
