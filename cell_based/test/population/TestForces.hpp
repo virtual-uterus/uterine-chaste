@@ -1917,6 +1917,7 @@ public:
 
         // Test that a subclass of AbstractTwoBodyInteractionForce emits the appropraite warning
         GeneralisedLinearSpringForce<2> spring_force;
+        Warnings::QuietDestroy(); // Clear any warnings before the expected one
         spring_force.AddForceContribution(cell_population);
         TS_ASSERT_EQUALS(Warnings::Instance()->GetNextWarningMessage(),
             "No node pairs found. Does this cell population support updating mNodePairs?"
