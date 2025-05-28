@@ -771,7 +771,9 @@ void Hdf5DataWriter::PutVector(int variableID, Vec petscVector)
 
     // Define memspace and hyperslab
     hid_t memspace, hyperslab_space;
-    if (mNumberOwned != 0)
+    // HDF5 1.12.0 appears to have a problem with H5S_NULL so we revert to 
+    // a non-owning process having an empty memspace and slab
+    //if (mNumberOwned != 0)
     {
         hsize_t v_size[1] = { mNumberOwned };
         memspace = H5Screate_simple(1, v_size, nullptr);
@@ -782,11 +784,11 @@ void Hdf5DataWriter::PutVector(int variableID, Vec petscVector)
         hyperslab_space = H5Dget_space(mVariablesDatasetId);
         H5Sselect_hyperslab(hyperslab_space, H5S_SELECT_SET, offset_dims, nullptr, count, nullptr);
     }
-    else
-    {
-        memspace = H5Screate(H5S_NULL);
-        hyperslab_space = H5Screate(H5S_NULL);
-    }
+    //else
+    //{
+    //    memspace = H5Screate(H5S_NULL);
+    //    hyperslab_space = H5Screate(H5S_NULL);
+    //}
 
     // Create property list for collective dataset
     hid_t property_list_id = H5Pcreate(H5P_DATASET_XFER);
@@ -908,7 +910,9 @@ void Hdf5DataWriter::PutStripedVector(std::vector<int> variableIDs, Vec petscVec
     }
     // Define memspace and hyperslab
     hid_t memspace, hyperslab_space;
-    if (mNumberOwned != 0)
+    // HDF5 1.12.0 appears to have a problem with H5S_NULL so we revert to 
+    // a non-owning process having an empty memspace and slab
+    //if (mNumberOwned != 0)
     {
         hsize_t v_size[1] = { mNumberOwned * NUM_STRIPES };
         memspace = H5Screate_simple(1, v_size, nullptr);
@@ -921,11 +925,11 @@ void Hdf5DataWriter::PutStripedVector(std::vector<int> variableIDs, Vec petscVec
         hyperslab_space = H5Dget_space(mVariablesDatasetId);
         H5Sselect_hyperslab(hyperslab_space, H5S_SELECT_SET, start, stride, number_blocks, block_size);
     }
-    else
-    {
-        memspace = H5Screate(H5S_NULL);
-        hyperslab_space = H5Screate(H5S_NULL);
-    }
+    //else
+    //{
+    //    memspace = H5Screate(H5S_NULL);
+    //    hyperslab_space = H5Screate(H5S_NULL);
+    //}
 
     // Create property list for collective dataset write, and write! Finally.
     hid_t property_list_id = H5Pcreate(H5P_DATASET_XFER);
