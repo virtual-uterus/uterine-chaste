@@ -162,8 +162,9 @@ void VtkMeshReader<ELEMENT_DIM,SPACE_DIM>::CommonConstructor()
 #else
         mpVtkGeometryFilter->SetInput(mpVtkUnstructuredGrid);
 #endif
-#if VTK_MAJOR_VERSION >= 8
-        // Change to indexing in vtkGeometryFilter happened in VTK 8.1
+
+#if (VTK_MAJOR_VERSION >= 9 && VTK_MINOR_VERSION >= 2)
+        // Change to indexing in vtkGeometryFilter happened in VTK 9.1 or 9.2
         mpVtkGeometryFilter->SetPassThroughPointIds(1);
 #endif
         mpVtkGeometryFilter->Update();
@@ -382,8 +383,8 @@ ElementData VtkMeshReader<ELEMENT_DIM,SPACE_DIM>::GetNextFaceData()
     ElementData next_face_data;
     if (ELEMENT_DIM == 3u)
     {
-#if VTK_MAJOR_VERSION >= 8
-        // Change to indexing in vtkGeometryFilter happened in VTK 8.1
+#if (VTK_MAJOR_VERSION >= 9 && VTK_MINOR_VERSION >= 2)
+        // Change to indexing in vtkGeometryFilter happened in VTK 9.1 or 9.2
         vtkDataArray *original_ids = mpVtkGeometryFilter->GetOutput()->GetPointData()->GetArray("vtkOriginalPointIds");
 #endif
         while (mpVtkGeometryFilter->GetOutput()->GetCellType(mBoundaryFacesRead + mBoundaryFacesSkipped) == VTK_LINE)
@@ -393,8 +394,8 @@ ElementData VtkMeshReader<ELEMENT_DIM,SPACE_DIM>::GetNextFaceData()
         for (unsigned i = 0; i < (mNodesPerElement-1); i++)
         {
             unsigned id = mpVtkGeometryFilter->GetOutput()->GetCell(mBoundaryFacesRead + mBoundaryFacesSkipped)->GetPointId(i);
-#if VTK_MAJOR_VERSION >= 8
-            // Change to indexing in vtkGeometryFilter happened in VTK 8.1
+#if (VTK_MAJOR_VERSION >= 9 && VTK_MINOR_VERSION >= 2)
+            // Change to indexing in vtkGeometryFilter happened in VTK 9.1 or 9.2
             next_face_data.NodeIndices.push_back(original_ids->GetTuple1(id));
 #else
             next_face_data.NodeIndices.push_back(id);
