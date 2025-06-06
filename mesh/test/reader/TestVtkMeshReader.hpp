@@ -367,7 +367,7 @@ public:
         TS_ASSERT_EQUALS(mesh.GetNumBoundaryElements(), 312u);
         
         // Check that the boundary is properly marked 
-        /* Change to indexing in vtkGeometryFilter happened in VTK 9.1 or 9.2
+        /* Change to indexing in vtkGeometryFilter happened in VTK 9.1
          * This means that when the boundary faces are extracted by vtkGeometryFilter
          * the mesh of faces has the subset of boundary nodes reindexed, so the
          * following checks we are using the original numbering */ 
@@ -475,7 +475,7 @@ public:
         TS_ASSERT_EQUALS(mesh.GetNumBoundaryElements(), 312u);
 
         // Check that the boundary is properly marked 
-        /* Change to indexing in vtkGeometryFilter happened in VTK 9.1 or 9.2
+        /* Change to indexing in vtkGeometryFilter happened in VTK 9.1
          * This means that when the boundary faces are extracted by vtkGeometryFilter
          * the mesh of faces has the subset of boundary nodes reindexed, so the
          * following checks we are using the original numbering */ 
