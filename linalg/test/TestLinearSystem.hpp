@@ -1173,12 +1173,13 @@ public:
                     ls.SetMatrixElement(row, col, (row == col)?(row+1.0):0.0);
                 }
             }
-            ls.AssembleFinalLinearSystem();
 
             for (unsigned i=0; i<size; i++)
             {
                 ls.SetRhsVectorElement(i, rhs_values[i]);
             }
+            ls.AssembleFinalLinearSystem();
+
             ls.SetKspType("cg");
             ls.SetPcType("none");
 
@@ -1615,6 +1616,7 @@ public:
 
         Vec init_cond = PetscTools::CreateAndSetVec(2, 0.0);
         PetscVecTools::SetElement(init_cond, 0, 0.01);
+        PetscVecTools::Finalise(init_cond);
 
         ls.AssembleFinalLinearSystem();
 
