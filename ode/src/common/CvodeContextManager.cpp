@@ -42,7 +42,15 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "CvodeContextManager.hpp"
 
-CvodeContextManager::CvodeContextManager() : mSundialsContext() {}
+CvodeContextManager::CvodeContextManager()
+{
+    SUNContext_Create(SUN_COMM_NULL, &mSundialsContext);
+}
+
+CvodeContextManager::~CvodeContextManager()
+{
+    SUNContext_Free(&mSundialsContext);
+}
 
 CvodeContextManager* CvodeContextManager::Instance()
 {
@@ -51,7 +59,7 @@ CvodeContextManager* CvodeContextManager::Instance()
     return instance.get();
 }
 
-sundials::Context& CvodeContextManager::GetSundialsContext()
+SUNContext& CvodeContextManager::GetSundialsContext()
 {
     assert(mSundialsContext);
     return mSundialsContext;
