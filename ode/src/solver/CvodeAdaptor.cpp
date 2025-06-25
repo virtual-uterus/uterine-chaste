@@ -176,8 +176,13 @@ int CvodeRootAdaptor(realtype t, N_Vector y, realtype* pGOut, void* pData)
 //     return 0;
 // }
 
+#if CHASTE_SUNDIALS_VERSION >= 70000
+void CvodeErrorHandler(int errorCode, const char* module, const char* function,
+                       const char* message, SUNErrCode errCode, void* pData, SUNContext sunContext)
+#else
 void CvodeErrorHandler(int errorCode, const char* module, const char* function,
                        char* message, void* pData)
+#endif
 {
     std::stringstream err;
     err << "CVODE Error " << errorCode << " in module " << module
@@ -239,7 +244,11 @@ void CvodeAdaptor::SetupCvode(AbstractOdeSystem* pOdeSystem,
         if (mpCvodeMem == nullptr)
             EXCEPTION("Failed to SetupCvode CVODE"); // LCOV_EXCL_LINE
         // Set error handler
+#if CHASTE_SUNDIALS_VERSION >= 70000
+        SUNContext_PushErrHandler(CvodeContextManager::Instance()->GetSundialsContext(),  CvodeErrorHandler, nullptr);
+#else
         CVodeSetErrHandlerFn(mpCvodeMem, CvodeErrorHandler, nullptr);
+#endif
         // Set the user data
         mData.pSystem = pOdeSystem;
         mData.pY = &rInitialY;

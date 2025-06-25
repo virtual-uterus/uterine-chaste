@@ -431,7 +431,11 @@ void AbstractCvodeSystem::SetupCvode(N_Vector initialConditions,
             EXCEPTION("Failed to SetupCvode CVODE"); // LCOV_EXCL_LINE
 
         // Set error handler
+#if CHASTE_SUNDIALS_VERSION >= 70000
+	SUNContext_PushErrHandler(CvodeContextManager::Instance()->GetSundialsContext(),  CvodeErrorHandler, nullptr);
+#else
         CVodeSetErrHandlerFn(mpCvodeMem, CvodeErrorHandler, nullptr);
+#endif
 // Set the user data
 #if CHASTE_SUNDIALS_VERSION >= 20400
         CVodeSetUserData(mpCvodeMem, (void*)(this));

@@ -65,8 +65,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * Throw an Exception to report errors, rather than the CVODE approach of magic
  * return codes.
  */
+#if CHASTE_SUNDIALS_VERSION >= 70000
+void CvodeErrorHandler(int errorCode, const char* module, const char* function,
+                       const char* message, SUNErrCode errCode, void* pData, SUNContext sunContext);
+#else
 void CvodeErrorHandler(int errorCode, const char* module, const char* function,
                        char* message, void* pData);
+#endif
 // Note: declared here since it's also used by AbstractCvodeCell.
 
 /**
