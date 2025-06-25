@@ -54,6 +54,11 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <sunmatrix/sunmatrix_dense.h> /* access to dense SUNMatrix            */
 #endif
 
+#if CHASTE_SUNDIALS_VERSION >= 70000
+///\todo We should prefer sunrealtype in our own code in future
+#define realtype sunrealtype
+#endif
+
 /**
  * CVODE error handling function.
  *
