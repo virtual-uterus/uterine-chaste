@@ -49,7 +49,9 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <sundials/sundials_nvector.h>
 
 #if CHASTE_SUNDIALS_VERSION >= 30000
+#if CHASTE_SUNDIALS_VERSION < 70000
 #include <cvode/cvode_direct.h> /* access to CVDls interface            */
+#endif
 #include <sundials/sundials_types.h> /* defs. of realtype, sunindextype      */
 #include <sunlinsol/sunlinsol_dense.h> /* access to dense SUNLinearSolver      */
 #include <sunmatrix/sunmatrix_dense.h> /* access to dense SUNMatrix            */
